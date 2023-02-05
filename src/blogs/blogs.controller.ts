@@ -30,17 +30,16 @@ export class BlogsController {
   @Post()
   @UsePipes(ValidationPipe)
   async createBlog(@Body() createBlogDto: CreateBlogDto) {
-    console.log(createBlogDto);
     return await this.service.createBlog(createBlogDto);
   }
 
-  // @Put(':id')
-  // async updateBlog(
-  //   @Param('id') id: string,
-  //   @Body updateBlogDto: UpdateBlogDto,
-  // ) {
-  //   return await this.service.updateBlog(id, updateBlogDto);
-  // }
+  @Put(':id')
+  async updateBlog(
+    @Param('id') id: string,
+    @Body() updateBlogDto: UpdateBlogDto,
+  ) {
+    return await this.service.updateBlog(id, updateBlogDto);
+  }
 
   @Delete(':id')
   async deleteBlog(@Param('id') id: string) {
