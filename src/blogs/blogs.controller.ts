@@ -1,6 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/createBlog.dto';
+import { UpdateBlogDto } from './dto/updateBlog.dto';
 
 @Controller('blog')
 export class BlogsController {
@@ -17,7 +28,22 @@ export class BlogsController {
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   async createBlog(@Body() createBlogDto: CreateBlogDto) {
+    console.log(createBlogDto);
     return await this.service.createBlog(createBlogDto);
+  }
+
+  // @Put(':id')
+  // async updateBlog(
+  //   @Param('id') id: string,
+  //   @Body updateBlogDto: UpdateBlogDto,
+  // ) {
+  //   return await this.service.updateBlog(id, updateBlogDto);
+  // }
+
+  @Delete(':id')
+  async deleteBlog(@Param('id') id: string) {
+    return await this.service.deleteBlog(id);
   }
 }
