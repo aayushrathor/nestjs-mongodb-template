@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "env": {
-    "MONGO_URI": "MONGO_URI",
-    "SERVER_PORT": "SERVER_PORT",
-    "JWT_SECRET": "JWT_SECRET"
-  },
   "builds": [
     {
       "src": "src/main.ts",
